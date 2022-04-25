@@ -11,6 +11,7 @@ app.use(express.json());
 
 app.use("/api/posts", postRouter);
 app.use("/api/guests", guestRouter);
+app.use("/public", express.static("public"));
 
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}...`);

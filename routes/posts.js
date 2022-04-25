@@ -1,4 +1,6 @@
 const { Router } = require("express");
+const multer = require("multer");
+const upload = multer({ dest: "public/images/" });
 const router = Router();
 const db = require("../db");
 
@@ -9,8 +11,8 @@ router.get("/", (_req, res) => {
   });
 });
 
-router.post("/", (req, res) => {
-  db.posts.insert(req.body, (err, doc) => {
+router.post("/", upload.single("postImage"), (req, res) => {
+  db.posts.insert({ ...req.body, postImage: req.file.path }, (err, doc) => {
     if (err) {
       console.error(err);
       return res.sendStatus(500);
