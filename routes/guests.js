@@ -10,7 +10,7 @@ router.get("/", (_req, res) => {
 });
 
 router.post("/", (req, res) => {
-  db.posts.insert(req.body, (err, doc) => {
+  db.guests.insert(req.body, (err, doc) => {
     if (err) {
       console.error(err);
       return res.sendStatus(500);
